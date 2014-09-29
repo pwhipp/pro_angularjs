@@ -3,18 +3,28 @@
 {% block title %}JSDemo Example{% endblock title %}
 {% block head_extras %}
 <script type="text/javascript">
-    var stuff = [
-        "hello",
-        function (){
-            return "Paul"
-        }];
-    angular.forEach(stuff, function(item){
-        if (angular.isFunction(item)){
-            console.log(item());
-        } else {
-            console.log(item);
+    var person = {
+        friend: true,
+        getName: function(){
+            return 'name' in this ? this.name : 'Sir or Madam';
+        },
+        salutation: function(){
+            return this.friend ? 'Hi' : 'Hello';
+            },
+        greet: function(){
+            return this.salutation() + ' ' + this.getName()
         }
-    })
+    };
+    var people = [
+        {name: 'tom', friend: true},
+        {name: 'dick', friend: false},
+        {}];
+    angular.forEach(people, function(p){
+        angular.extend(p, person);
+    });
+    angular.forEach(people, function(p){
+        console.log(p.greet());
+    });
 </script>
 {% endblock head_extras %}
 {% block body %}
