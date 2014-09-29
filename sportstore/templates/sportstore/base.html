@@ -1,8 +1,13 @@
 {% extends 'core/base.html' %}
 {% load staticfiles %}
+{% block ng-app %}ng-app="sportsStore"{% endblock ng-app %}
+{% block title %}SportStore{% endblock title %}
 {% block head_extras %}
     <script src="{% static 'sportstore/js/angular-resource.js' %}"></script>
     <script src="{% static 'sportstore/js/angular-route.js' %}"></script>
+    <script>
+        angular.module("sportsStore", []);
+    </script>
 {% endblock head_extras %}
 {% block body %}
     <div class="navbar navbar-inverse">

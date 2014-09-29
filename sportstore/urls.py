@@ -5,5 +5,5 @@ import sportstore.views as sv
 
 urlpatterns = patterns(
     '',
-    url(r'^$', TemplateView.as_view(template_name='sportstore/index.html'), name='sportstore_home'),
+    url(r'^$', TemplateView.as_view(template_name='sportstore/index.html'), name='sportstore'),
     url(r'products/$', sv.get_products, name='sportstore_products'))
