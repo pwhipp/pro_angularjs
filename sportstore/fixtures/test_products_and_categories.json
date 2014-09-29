@@ -1,0 +1,113 @@
+[
+{
+    "fields": {
+        "name": "Watersports"
+    },
+    "model": "sportstore.category",
+    "pk": 1
+},
+{
+    "fields": {
+        "name": "Soccer"
+    },
+    "model": "sportstore.category",
+    "pk": 2
+},
+{
+    "fields": {
+        "name": "Chess"
+    },
+    "model": "sportstore.category",
+    "pk": 3
+},
+{
+    "fields": {
+        "category": 1,
+        "price": "275",
+        "name": "Kayak",
+        "description": "A boat for one person"
+    },
+    "model": "sportstore.product",
+    "pk": 1
+},
+{
+    "fields": {
+        "category": 1,
+        "price": "48.95",
+        "name": "Lifejacket",
+        "description": "Protective and fashionable"
+    },
+    "model": "sportstore.product",
+    "pk": 2
+},
+{
+    "fields": {
+        "category": 2,
+        "price": "19.5",
+        "name": "Soccer Ball",
+        "description": "FIFA approved size and weight"
+    },
+    "model": "sportstore.product",
+    "pk": 3
+},
+{
+    "fields": {
+        "category": 2,
+        "price": "34.95",
+        "name": "Corner Flags",
+        "description": "Give your playing field a professional touch"
+    },
+    "model": "sportstore.product",
+    "pk": 4
+},
+{
+    "fields": {
+        "category": 2,
+        "price": "795000",
+        "name": "Stadium",
+        "description": "Flat packed 35,000 seat stadium (some assembly required)"
+    },
+    "model": "sportstore.product",
+    "pk": 5
+},
+{
+    "fields": {
+        "category": 3,
+        "price": "16",
+        "name": "Thinking Cap",
+        "description": "Improve your brain efficiency by 75%"
+    },
+    "model": "sportstore.product",
+    "pk": 6
+},
+{
+    "fields": {
+        "category": 3,
+        "price": "29.95",
+        "name": "Unsteady Chair",
+        "description": "Secretly give youyr opponent a disadvantage"
+    },
+    "model": "sportstore.product",
+    "pk": 7
+},
+{
+    "fields": {
+        "category": 3,
+        "price": "75",
+        "name": "Human Chess Board",
+        "description": "A fun game for the family"
+    },
+    "model": "sportstore.product",
+    "pk": 8
+},
+{
+    "fields": {
+        "category": 3,
+        "price": "1200",
+        "name": "Bling Bling King",
+        "description": "Gold plated diamond studded king"
+    },
+    "model": "sportstore.product",
+    "pk": 9
+}
+]
