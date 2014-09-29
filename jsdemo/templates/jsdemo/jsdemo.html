@@ -3,7 +3,18 @@
 {% block title %}JSDemo Example{% endblock title %}
 {% block head_extras %}
 <script type="text/javascript">
-    console.log("Hello");
+    var stuff = [
+        "hello",
+        function (){
+            return "Paul"
+        }];
+    angular.forEach(stuff, function(item){
+        if (angular.isFunction(item)){
+            console.log(item());
+        } else {
+            console.log(item);
+        }
+    })
 </script>
 {% endblock head_extras %}
 {% block body %}
