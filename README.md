@@ -2,4 +2,7 @@ This is chapter 2 of [Pro AngularJS](http://www.apress.com/9781430264484) done u
 
 This work was done in Ubuntu 14.04. No special requirements but I recommend you use the requirements.txt in a virtualenv.
 
-I'm going to add the other chapters as I get around to them. I'll also put more detail in this readme soon.
+This workthrough of the book does not use [deployd](http://deployd.com/) because it relies instead upon Django's built in ORM and models.
+
+## Creating the products collection
+To create the products collection, I first created a Product model object in the sportstore with the required properties.
