@@ -5,9 +5,11 @@ from django.views.generic import TemplateView
 
 import todo.urls
 import jsdemo.urls
+import sportstore.urls
 
 urlpatterns = patterns(
     '',
+    url(r'sportstore/', include(sportstore.urls)),
     url(r'todo/', include(todo.urls)),
     url(r'jsdemo/', include(jsdemo.urls)),
     url(r'^$', TemplateView.as_view(template_name='core/index.html'), name='home'),
