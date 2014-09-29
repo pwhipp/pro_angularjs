@@ -1,13 +1,6 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html ng-app>
-<head>
-    <title>First Test</title>
-    <script src="{% static 'core/js/angular.js' %}"></script>
-    <link href="{% static 'core/css/bootstrap.css' %}" rel="stylesheet" />
-</head>
-<body>
+{% extends 'core/base.html' %}
+{% block title %}First Test{% endblock title %}
+{% block body %}
     <div class="btn btn-default">{{"AngularJS"}}</div>
     <div class="btn btn-success">Bootstrap</div>
-</body>
-</html>
+{% endblock body %}

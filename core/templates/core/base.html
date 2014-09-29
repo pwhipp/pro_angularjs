@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html {% block ng-app %}ng-app{% endblock ng-app %}>
+<head>
+    <title>{% block title %}{% endblock title %}</title>
+    <script src="{% static 'core/js/angular.js' %}"></script>
+    <link href="{% static 'core/css/bootstrap.css' %}" rel="stylesheet" />
+    {% block head_extras %}{% endblock head_extras %}
+</head>
+<body {% block body_attributes %}{% endblock body_attributes %}>
+{% block body %}
+{% endblock body %}
+</body>
+</html>

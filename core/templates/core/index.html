@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>pro angular examples in django</title>
-</head>
-<body>
-<h1>Pro Angular examples in Django</h1>
-<ul>
-    <li><a href="{% url 'test' %}">Test</a></li>
-    <li><a href="{% url 'todo' %}">ToDo</a></li>
-</ul>
-</body>
-</html>
+{% extends 'core/base.html' %}
+{% block title %}pro angular examples in django{% endblock title %}
+{% block body %}
+    <h1><a href="http://www.apress.com/9781430264484">Pro Angular book</a> examples done <a href="https://www.djangoproject.com/">Django</a></h1>
+    <ul>
+        <li><a href="{% url 'test' %}">Test</a></li>
+        <li><a href="{% url 'todo' %}">ToDo</a></li>
+    </ul>
+{% endblock body %}
