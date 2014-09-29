@@ -1,33 +1,11 @@
 ﻿{% extends 'core/base.html' %}
-{% block ng-app %}ng-app="demo"{% endblock ng-app %}
+{% block ng-app %}{% endblock ng-app %}
 {% block title %}JSDemo Example{% endblock title %}
 {% block head_extras %}
 <script type="text/javascript">
-
-    var myApp = angular.module("demo", []);
-
-    myApp.controller("demoCtrl", function ($scope, $http) {
-        $http.get("todo.json").success(function (data) {
-            var jsonString = angular.toJson(data);
-            console.log(jsonString);
-            $scope.todos = angular.fromJson(jsonString);
-        });
-    });
-
+    console.log("Hello");
 </script>
 {% endblock head_extras %}
-{% block body_attributes %}ng-controller="demoCtrl"{% endblock body_attributes %}
 {% block body %}
-    {% verbatim %}
-    <div class="panel">
-        <h1>To Do (JSDemo)</h1>
-        <table class="table">
-            <tr><td>Action</td><td>Done</td></tr>
-            <tr ng-repeat="item in todos">
-                <td>{{item.action}}</td>
-                <td>{{item.done}}</td>
-            </tr>
-        </table>
-    </div>
-    {% endverbatim %}
+    This is a simple example
 {% endblock body %}
