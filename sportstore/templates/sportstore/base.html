@@ -6,21 +6,27 @@
     <script src="{% static 'sportstore/js/angular-resource.js' %}"></script>
     <script src="{% static 'sportstore/js/angular-route.js' %}"></script>
     <script>
-        angular.module("sportsStore", []);
+        angular.module("sportsStore", ["customFilters"]);
     </script>
     <script src="{% static 'sportstore/js/sportstore.js' %}"></script>
+    <script src="{% static 'sportstore/js/customFilters.js' %}"></script>
 {% endblock head_extras %}
 {% block body_attributes %}ng-controller="sportsStoreCtrl"{% endblock body_attributes %}
 {% block body %}
+    {% verbatim %}
     <div class="navbar navbar-inverse">
         <a class="navbar-brand" href="#">SPORTS STORE</a>
     </div>
     <div class="panel panel-default row">
         <div class="col-xs-3">
-             Categories go here
+            <a ng-click="selectCategory()"
+               class="btn btn-block btn-default btn-lg">Home</a>
+            <a ng-repeat="item in data.products | orderBy:'category' | unique:'category'"
+               ng-click="selectCategory(item)" class=" btn btn-block btn-default btn-lg">
+                {{item}}
+            </a>
         </div>
         <div class="col-xs-8">
-            {% verbatim %}
             <div class="well" ng-repeat="item in data.products">
                 <h3>
                     <strong>{{item.name}}</strong>
@@ -30,7 +36,7 @@
                 </h3>
                 <span class="lead">{{item.description}}</span>
             </div>
-            {% endverbatim %}
         </div>
     </div>
+    {% endverbatim %}
 {% endblock body %}
