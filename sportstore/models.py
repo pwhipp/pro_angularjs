@@ -13,7 +13,8 @@ class NamedObject(models.Model):
 
 
 class Category(NamedObject):
-    pass
+    class Meta:
+        verbose_name_plural = 'Categories'
 
 
 class Product(NamedObject):
