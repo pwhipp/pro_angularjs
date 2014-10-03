@@ -41,5 +41,9 @@ def create_order(request):
         order_item = sm.OrderItem(order=order, product=product, **order_item_info)
         order_item.save()
 
-    order_json = serializers.serialize('json', [order])[1:-2]
+    order_dict = json.loads(serializers.serialize('json', [order])[1:-1])
+    order_dict = dict(order_dict['fields'].items() +
+                      [('id', order_dict['pk'])])
+    order_json = json.dumps(order_dict)
+
     return HttpResponse(order_json, content_type='application/json')
