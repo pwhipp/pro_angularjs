@@ -32,3 +32,8 @@ or a superuser and we'll use that base level as our 'shopper' who can create ord
 At this stage we have not associated any special permissions with our registered user - we just use the basic
 authentication to ensure that they are registered.
 
+## 8.10 Location of admin
+I've treated the front end admin being developed in the book as a 'component' and located it under sportstore. This is
+because I want to minimize confusion with Django's built in admin and to have it somewhere that one naturally looks for
+it.
+
