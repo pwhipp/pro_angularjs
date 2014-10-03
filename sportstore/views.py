@@ -25,6 +25,11 @@ def get_products(request):
 
 @csrf_exempt  # TODO: Handle csrf by picking up token in js for posting and remove this exemption
 def create_order(request):
+    """
+    Create order and return it as json
+    :param request:
+    :return:
+    """
     order_info = json.loads(request.body)
     order_items_info = order_info.pop('products')
 
@@ -35,3 +40,6 @@ def create_order(request):
         product = sm.Product.objects.get(id=order_item_info.pop('id'))
         order_item = sm.OrderItem(order=order, product=product, **order_item_info)
         order_item.save()
+
+    order_json = serializers.serialize('json', [order])[1:-2]
+    return HttpResponse(order_json, content_type='application/json')

@@ -31,10 +31,22 @@ class Order(models.Model):
     country = models.CharField(max_length=256)
     giftwrap = models.BooleanField(default=False)
 
+    @property
+    def total(self):
+        """
+        I wonder how many times this will be implemented ;)
+        :return: total value of order (decimal)
+        """
+        return reduce(lambda i, p: i + p.count * p.price, self.orderitem_set.all(), 0)
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order)
     product = models.ForeignKey(Product)
     count = models.IntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    @property
+    def name(self):
+        return self.product.name
 

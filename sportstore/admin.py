@@ -16,3 +16,15 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'category', 'price')
 
 admin.site.register(sm.Product, ProductAdmin)
+
+
+class OrderItemInline(admin.TabularInline):
+    model = sm.OrderItem
+    extra = 1
+
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('name', 'street', 'country', 'total')
+    inlines = [OrderItemInline]
+
+admin.site.register(sm.Order, OrderAdmin)
