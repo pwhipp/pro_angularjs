@@ -6,16 +6,18 @@
     <script src="{% static 'sportstore/js/angular-resource.js' %}"></script>
     <script src="{% static 'sportstore/js/angular-route.js' %}"></script>
     <script>
-        angular.module("sportsStore", ["customFilters"]);
+        angular.module("sportsStore", ["customFilters", "cart"]);
     </script>
     <script src="{% static 'sportstore/js/controllers/sportstore.js' %}"></script>
     <script src="{% static 'sportstore/js/controllers/productList.js' %}"></script>
     <script src="{% static 'sportstore/js/customFilters.js' %}"></script>
+    <script src="{% static 'sportstore/js/components/cart/cart.js' %}"></script>
 {% endblock head_extras %}
 {% block body_attributes %}ng-controller="sportsStoreCtrl"{% endblock body_attributes %}
 {% block body %}
     <div class="navbar navbar-inverse">
         <a class="navbar-brand" href="#">SPORTS STORE</a>
+        <cart-summary />
     </div>
     <ng-include src="'{% static 'sportstore/partials/error.html' %}'"></ng-include>
     <ng-include src="'{% static 'sportstore/partials/productList.html' %}'"></ng-include>
