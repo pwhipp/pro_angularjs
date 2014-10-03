@@ -1,6 +1,6 @@
 This is my workthrough of [Pro AngularJS](http://www.apress.com/9781430264484) done using the Django 1.7 framework.
 
-If you want to follow along, Use the commits.
+If you want to follow along, Use the commits. Each commit works for the relevant stage in the book.
 
 This work was done in Ubuntu 14.04. No special requirements but I recommend you use the requirements.txt in a virtualenv.
 
