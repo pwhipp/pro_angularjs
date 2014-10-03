@@ -3,6 +3,7 @@ import json
 from django.http import HttpResponse
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 import sportstore.models as sm
 
@@ -24,6 +25,7 @@ def get_products(request):
 
 
 @csrf_exempt  # TODO: Handle csrf by picking up token in js for posting and remove this exemption
+@login_required
 def create_order(request):
     """
     Create order and return it as json
