@@ -9,6 +9,14 @@
         angular.module("sportsStore", ["customFilters", "cart", "ngRoute"])
         .config(function ($routeProvider) {
 
+            $routeProvider.when("/complete", {
+                templateUrl: "/static/sportstore/partials/cart/thankYou.html"
+            });
+
+            $routeProvider.when("/placeorder", {
+                templateUrl: "/static/sportstore/partials/cart/placeOrder.html"
+            });
+
             $routeProvider.when("/checkout", {
                 templateUrl: "/static/sportstore/partials/cart/checkout.html"
             });
@@ -24,6 +32,7 @@
     </script>
     <script src="{% static 'sportstore/js/controllers/sportstore.js' %}"></script>
     <script src="{% static 'sportstore/js/controllers/productList.js' %}"></script>
+    <script src="{% static 'sportstore/js/controllers/checkout.js' %}"></script>
     <script src="{% static 'sportstore/js/customFilters.js' %}"></script>
     <script src="{% static 'sportstore/js/components/cart/cart.js' %}"></script>
 {% endblock head_extras %}
