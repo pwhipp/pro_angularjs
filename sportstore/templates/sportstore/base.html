@@ -18,7 +18,14 @@
     <div class="navbar navbar-inverse">
         <a class="navbar-brand" href="#">SPORTS STORE</a>
     </div>
+
+    <div class="alert alert-danger" ng-show="data.error">
+        Error ({{data.error.status}}). The product data was not loaded.
+        <a href="/sportstore/" class="alert-link">Click here to try again</a>
+    </div>
+
     <div class="panel panel-default row" ng-controller="productListCtrl">
+
         <div class="col-xs-3">
             <a ng-click="selectCategory()"
                class="btn btn-block btn-default btn-lg"
@@ -29,6 +36,7 @@
                 {{item}}
             </a>
         </div>
+
         <div class="col-xs-8">
             <div class="well"
                  ng-repeat="item in data.products | filter:categoryFilterFn | range:selectedPage:pageSize">
@@ -49,6 +57,7 @@
                 </a>
             </div>
         </div>
+
     </div>
     {% endverbatim %}
 {% endblock body %}
