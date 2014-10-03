@@ -14,3 +14,7 @@ The filter does not filter the list of products. It transforms the list into a l
 
 ## 6.11 thoughts
 Implementing the page handling locally is very wrong. The page elements should be pulled in via AJAX for each page.
+
+## 7.12 thoughts
+Partials have become views which I guess are a partial in the general sense.
+I've kept them in the partials folder for now.

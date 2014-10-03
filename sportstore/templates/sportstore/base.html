@@ -6,7 +6,21 @@
     <script src="{% static 'sportstore/js/angular-resource.js' %}"></script>
     <script src="{% static 'sportstore/js/angular-route.js' %}"></script>
     <script>
-        angular.module("sportsStore", ["customFilters", "cart"]);
+        angular.module("sportsStore", ["customFilters", "cart", "ngRoute"])
+        .config(function ($routeProvider) {
+
+            $routeProvider.when("/checkout", {
+                templateUrl: "/static/sportstore/partials/cart/checkout.html"
+            });
+
+            $routeProvider.when("/products", {
+                templateUrl: "/static/sportstore/partials/productList.html"
+            });
+
+            $routeProvider.otherwise({
+                templateUrl: "/static/sportstore/partials/productList.html"
+            });
+        });
     </script>
     <script src="{% static 'sportstore/js/controllers/sportstore.js' %}"></script>
     <script src="{% static 'sportstore/js/controllers/productList.js' %}"></script>
@@ -20,5 +34,5 @@
         <cart-summary />
     </div>
     <ng-include src="'{% static 'sportstore/partials/error.html' %}'"></ng-include>
-    <ng-include src="'{% static 'sportstore/partials/productList.html' %}'"></ng-include>
+    <ng-view />
 {% endblock body %}
