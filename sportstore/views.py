@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 
 import sportstore.models as sm
 
@@ -49,3 +50,22 @@ def create_order(request):
     order_json = json.dumps(order_dict)
 
     return HttpResponse(order_json, content_type='application/json')
+
+
+def get_auth_token(request):
+    """
+    Supply an authentication token if the username/password is valid (otherwise raise 403 forbidden)
+    :param request:
+    :return:
+    """
+    try:
+        username, password = (request.POST[varname] for varname in ('username', 'password'))
+    except KeyError:
+        return HttpResponse('Parameters incorrect', status_code=400)
+
+    user = authenticate(username=username, password=password)
+    if user:
+        login(request._request, user)
+        return
+    else:
+        return HttpResponse('Credentials invalid', status_code=403)
