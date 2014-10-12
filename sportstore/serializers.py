@@ -18,7 +18,17 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id', 'name', 'product_set')
 
 
-class ProductSerializer(serializers.HyperlinkedModelSerializer):
+class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = sm.Product
         fields = ('id', 'name', 'description', 'category', 'price')
+
+    def transform_category(self, obj, category_id):
+        """
+        Transform the category into its name to follow the book javascript
+        :param obj:
+        :param value:
+        :return:
+        """
+        if category_id:
+            return sm.Category.objects.get(id=category_id).name

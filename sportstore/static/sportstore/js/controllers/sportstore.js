@@ -1,5 +1,5 @@
 angular.module("sportsStore")
-    .constant("dataUrl", "/sportstore/products/")
+    .constant("dataUrl", "/sportstore/api/products/")
     .constant("orderUrl", "/sportstore/create_order/")
     .controller("sportsStoreCtrl", function ($scope, $http, $location,
                                              dataUrl, orderUrl, cart) {
@@ -19,7 +19,7 @@ angular.module("sportsStore")
             order.products = cart.getProducts();
             $http.post(orderUrl, order)
                 .success(function (data) {
-                    console.log(data)
+                    console.log(data);
                     $scope.data.orderId = data.id;
                     cart.getProducts().length = 0;
                 })

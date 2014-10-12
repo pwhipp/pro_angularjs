@@ -43,3 +43,5 @@ to jump through a few hoops. To make things more realistic and fun, I'm taking a
 django rest framework. This makes the server api easier to manage and test and gives me all the authentication
 and security features needed in a manner that is also suitable for production environments.
 
+Being able to use /sportstore/api in both html and json is very handy!
+
