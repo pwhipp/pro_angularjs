@@ -1,12 +1,27 @@
+"""
+Using Django rest framework we supply a full API for the sportstore which
+supports CSRF protection and proper authentication.
+"""
 import json
 
-from django.http import HttpResponse
-from django.core import serializers
+from django.http import HttpResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 
+from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework import status
+
+from django.contrib.auth.models import User
+
+import sportstore.serializers as serializers
 import sportstore.models as sm
+
+
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = serializers.UserSerializer
 
 
 def get_products(request):
