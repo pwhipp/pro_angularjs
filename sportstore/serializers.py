@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 import sportstore.models as sm
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
     #orders = serializers.HyperlinkedRelatedField(many=True)
 
     class Meta:
@@ -12,13 +12,13 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username')
 
 
-class CategorySerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = sm.Category
         fields = ('id', 'name', 'product_set')
 
 
-class ProductSerializer(serializers.ModelSerializer):
+class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = sm.Product
         fields = ('id', 'name', 'description', 'category', 'price')

@@ -6,7 +6,9 @@ from rest_framework.routers import DefaultRouter
 import sportstore.views as sv
 
 router = DefaultRouter()
-router.register(r'users', sv.UserViewSet, 'sportstore_api')
+router.register(r'users', sv.UserViewSet)
+router.register(r'products', sv.ProductViewSet)
+router.register(r'categories', sv.CategoryViewSet)
 
 urlpatterns = patterns(
     '',

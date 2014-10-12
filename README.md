@@ -40,6 +40,6 @@ it.
 ## 8.11 Introducing Django rest framework
 The authentication and server side api is becoming more complex. The book relies upon the archaic deployd and still has
 to jump through a few hoops. To make things more realistic and fun, I'm taking a step back here and integrating the
-django rest framework. This will make the server api easier to manage and test and should give me all the authentication
+django rest framework. This makes the server api easier to manage and test and gives me all the authentication
 and security features needed in a manner that is also suitable for production environments.
 

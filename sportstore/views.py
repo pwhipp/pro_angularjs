@@ -24,6 +24,16 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = serializers.UserSerializer
 
 
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = sm.Product.objects.all()
+    serializer_class = serializers.ProductSerializer
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    queryset = sm.Category.objects.all()
+    serializer_class = serializers.CategorySerializer
+
+
 def get_products(request):
     products = serializers.serialize('json', sm.Product.objects.all())
 
