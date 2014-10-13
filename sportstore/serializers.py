@@ -5,11 +5,11 @@ import sportstore.models as sm
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    #orders = serializers.HyperlinkedRelatedField(many=True)
+    orders = serializers.HyperlinkedRelatedField(many=True)
 
     class Meta:
         model = User
-        fields = ('id', 'username')
+        fields = ('id', 'username', 'orders')
 
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
@@ -44,7 +44,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = sm.Order
-        fields = ('id', 'name', 'street', 'city', 'state', 'zip', 'country', 'giftwrap', 'products')
+        fields = ('id', 'user', 'name', 'street', 'city', 'state', 'zip', 'country', 'giftwrap', 'products')
 
     def save(self, **kwargs):
         """
