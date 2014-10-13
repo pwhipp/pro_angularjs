@@ -57,3 +57,13 @@ sends the server the order data plus the item data in one message.
 
 I've chosen make the order serializer work much the same way. This makes the order items invisible outside of the order.
 
+## 8.16 Nested views
+Using views to organize the dom seems to go (against Angular a bit)[http://jan.varwig.org/archive/how-to-do-nested-views-in-angularjs-hint-dont] and I can't help feeling that this should either use
+the (Angular UI)[https://github.com/angular-ui/ui-router] stuff or custom directives but I've decided to go with the book for the time being.
+
+Using the $index in the ng-repeat feels like magic. Horrid.
+
+In any event I'm not sure what the issue is here because we're using admin.html so they aren't nested anyway!
+
+## 8.18 I don't think I need the WithCredentials option
+As I've set Django up using token authentication, this is probably a waste.
