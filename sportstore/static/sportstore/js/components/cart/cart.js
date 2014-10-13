@@ -8,7 +8,7 @@ angular.module("cart", [])
             addProduct: function (id, name, price) {
                 var addedToExistingItem = false;
                 for (var i = 0; i < cartData.length; i++) {
-                    if (cartData[i].id == id) {
+                    if (cartData[i].product_id == id) {
                         cartData[i].count++;
                         addedToExistingItem = true;
                         break;
@@ -16,14 +16,14 @@ angular.module("cart", [])
                 }
                 if (!addedToExistingItem) {
                     cartData.push({
-                        count: 1, id: id, price: price, name: name
+                        count: 1, product_id: id, price: price, name: name
                     });
                 }
             },
 
             removeProduct: function (id) {
                 for (var i = 0; i < cartData.length; i++) {
-                    if (cartData[i].id == id) {
+                    if (cartData[i].product_id == id) {
                         cartData.splice(i, 1);
                         break;
                     }

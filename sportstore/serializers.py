@@ -34,13 +34,9 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
             return obj.category.name
 
 
-class OrderItemField(serializers.WritableField):
+class OrderItemField(serializers.Field):
     def to_native(self, value):
         return [OrderItemSerializer(order_item).data for order_item in value.all()]
-
-    def field_from_native(self, data, files, field_name, into):
-        import pdb; pdb.set_trace()
-        super(OrderItemField, self).field_from_native(data, files, field_name, into)
 
 
 class OrderSerializer(serializers.ModelSerializer):
@@ -49,6 +45,26 @@ class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = sm.Order
         fields = ('id', 'name', 'street', 'city', 'state', 'zip', 'country', 'giftwrap', 'products')
+
+    def save(self, **kwargs):
+        """
+        If new, create orderitems
+        :param kwargs:
+        :return:
+        """
+        new = self.data['id'] is None
+        order = super(OrderSerializer, self).save(**kwargs)
+        if new:
+            for product_info in self.init_data['products']:
+                order_item = sm.OrderItem(
+                    order=order,
+                    product=sm.Product.objects.get(id=product_info['product_id']),
+                    count=product_info['count'],
+                    price=product_info['price'])
+                order_item.save()
+        else:
+            raise(Exception('POST update on order object not allowed'))
+        return order
 
 
 class OrderItemSerializer(serializers.ModelSerializer):
