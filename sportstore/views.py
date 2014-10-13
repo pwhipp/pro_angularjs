@@ -36,37 +36,14 @@ class OrderViewSet(viewsets.ModelViewSet):
     queryset = sm.Order.objects.all()
     serializer_class = serializers.OrderSerializer
 
+    def pre_save(self, obj):
+        obj.user = self.request.user
+        super(OrderViewSet, self).pre_save(obj)
+
 
 class OrderItemViewSet(viewsets.ModelViewSet):
     queryset = sm.OrderItem.objects.all()
     serializer_class = serializers.OrderItemSerializer
-
-
-@csrf_exempt  # TODO: Handle csrf by picking up token in js for posting and remove this exemption
-@login_required
-def create_order(request):
-    """
-    Create order and return it as json
-    :param request:
-    :return:
-    """
-    order_info = json.loads(request.body)
-    order_items_info = order_info.pop('products')
-
-    order = sm.Order(**order_info)
-    order.save()
-
-    for order_item_info in order_items_info:
-        product = sm.Product.objects.get(id=order_item_info.pop('id'))
-        order_item = sm.OrderItem(order=order, product=product, **order_item_info)
-        order_item.save()
-
-    order_dict = json.loads(serializers.serialize('json', [order])[1:-1])
-    order_dict = dict(order_dict['fields'].items() +
-                      [('id', order_dict['pk'])])
-    order_json = json.dumps(order_dict)
-
-    return HttpResponse(order_json, content_type='application/json')
 
 
 def get_auth_token(request):

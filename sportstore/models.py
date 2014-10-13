@@ -1,5 +1,6 @@
 from django.db import models
 
+from django.contrib.auth.models import User
 
 class NamedObject(models.Model):
     name = models.CharField(max_length=256, unique=True)
@@ -24,6 +25,7 @@ class Product(NamedObject):
 
 
 class Order(models.Model):
+    user = models.ForeignKey(User, related_name='orders')
     name = models.CharField(max_length=256)
     street = models.CharField(max_length=256)
     city = models.CharField(max_length=256)
