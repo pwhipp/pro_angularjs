@@ -8,7 +8,7 @@
     <script src="{% static 'sportstore/js/angular-cookies.js' %}"></script>
     <script>
         angular.module("sportsStore", ["customFilters", "cart", "ngRoute", "ngCookies"])
-        .config(function ($routeProvider) {
+        .config(function ($routeProvider, $httpProvider) {
 
             $routeProvider.when("/complete", {
                 templateUrl: "/static/sportstore/partials/cart/thankYou.html"
@@ -29,6 +29,11 @@
             $routeProvider.otherwise({
                 templateUrl: "/static/sportstore/partials/productList.html"
             });
+
+
+        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+
         });
     </script>
     <script src="{% static 'sportstore/js/controllers/sportstore.js' %}"></script>
