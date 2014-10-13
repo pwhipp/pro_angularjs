@@ -9,12 +9,14 @@ router = DefaultRouter()
 router.register(r'users', sv.UserViewSet)
 router.register(r'products', sv.ProductViewSet)
 router.register(r'categories', sv.CategoryViewSet)
+router.register(r'orders', sv.OrderViewSet)
+router.register(r'orderitems', sv.OrderItemViewSet)
 
 urlpatterns = patterns(
     '',
     url(r'^$', TemplateView.as_view(template_name='sportstore/index.html'), name='sportstore'),
     url(r'^admin/$', TemplateView.as_view(template_name='sportstore/admin.html'), name='sportstore_admin'),
-    url(r'^api/', include(router.urls)))
+    url(r'^api/', include(router.urls)),
+    url(r'^create_order/$', sv.create_order, name='sportstore_create_order'))
     # url(r'^products/$', sv.get_products, name='sportstore_products'),
-    # url(r'^create_order/$', sv.create_order, name='sportstore_create_order'),
     # url(r'^get_auth_token/$', sv.get_auth_token, name='sportstore_get_auth_token'))

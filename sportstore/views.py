@@ -4,14 +4,12 @@ supports CSRF protection and proper authentication.
 """
 import json
 
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 
 from rest_framework import viewsets
-from rest_framework.response import Response
-from rest_framework import status
 
 from django.contrib.auth.models import User
 
@@ -34,20 +32,14 @@ class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.CategorySerializer
 
 
-def get_products(request):
-    products = serializers.serialize('json', sm.Product.objects.all())
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = sm.Order.objects.all()
+    serializer_class = serializers.OrderSerializer
 
-    # FTTB to conform with the book categories as strings (meh), convert our categories into the first category name.
-    def transform_product(p):
-        return dict(p['fields'].items() +
-                    [('id', p['pk']),
-                     ('category', sm.Category.objects.get(id=p['fields']['category']).name)])
 
-    products = json.loads(products)
-    products = [transform_product(product) for product in products]
-    products = json.dumps(products)
-
-    return HttpResponse(products, content_type='application/json')
+class OrderItemViewSet(viewsets.ModelViewSet):
+    queryset = sm.OrderItem.objects.all()
+    serializer_class = serializers.OrderItemSerializer
 
 
 @csrf_exempt  # TODO: Handle csrf by picking up token in js for posting and remove this exemption

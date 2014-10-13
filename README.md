@@ -45,3 +45,15 @@ and security features needed in a manner that is also suitable for production en
 
 Being able to use /sportstore/api in both html and json is very handy!
 
+### Handling the creation of orders and order items
+The Deployed service in the Pro Angular book is very flexible with respect to creating the items. As we're now using the
+rest_framework, the 'natural' way to create the order would be to:
+- Create an empty order
+- Create and Add order items
+
+This is supported by the rest_framework api except for the addition of the order item to the order (which is
+easily added). However, the book method for creating the order bundles creation of the order and its order items into one reasonably intuitive package which
+sends the server the order data plus the item data in one message.
+
+I've chosen make the order serializer work much the same way. This makes the order items invisible outside of the order.
+
