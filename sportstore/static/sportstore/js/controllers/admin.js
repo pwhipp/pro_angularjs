@@ -1,5 +1,5 @@
 angular.module("sportsStoreAdmin")
-    .constant("authUrl", "http://localhost:5500/users/login")
+    .constant("authUrl", "/sportstore/get_auth_token/")
     .controller("authCtrl", function($scope, $http, $location, authUrl) {
 
         $scope.authenticate = function (user, pass) {
