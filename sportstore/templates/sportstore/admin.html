@@ -9,11 +9,11 @@
             .config(function ($routeProvider) {
 
                 $routeProvider.when("/login", {
-                    templateUrl: "/views/adminLogin.html"
+                    templateUrl: "/static/sportstore/partials/admin/login.html"
                 });
 
                 $routeProvider.when("/main", {
-                    templateUrl: "/static/sportstore/partials/admin/adminMain.html"
+                    templateUrl: "/static/sportstore/partials/admin/main.html"
                 });
 
                 $routeProvider.otherwise({
@@ -22,10 +22,8 @@
             });
     </script>
 {% endblock head_extras %}
-{% block js_extras %}
-    <script src="{% static 'sportstore/js/controllers/admin.js' %}"></script>
-{% endblock js_extras %}
 {% block body_attributes %}{% endblock body_attributes %}
 {% block body %}
     <ng-view />
+    <script src="{% static 'sportstore/js/controllers/admin.js' %}"></script>
 {% endblock body %}
