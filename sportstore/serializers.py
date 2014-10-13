@@ -1,11 +1,21 @@
+from django.forms import PasswordInput
 from rest_framework import serializers
 
 from django.contrib.auth.models import User
 import sportstore.models as sm
 
 
+class CredentialsSerializer(serializers.Serializer):
+    username = serializers.CharField(max_length=30)
+    password = serializers.CharField(max_length=128, widget=PasswordInput())
+    token = serializers.Field()
+
+    class Meta:
+        fields = ('username', 'password', 'token')
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
-    orders = serializers.HyperlinkedRelatedField(many=True)
+    orders = serializers.HyperlinkedRelatedField(many=True, view_name='order-detail')
 
     class Meta:
         model = User
@@ -30,7 +40,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         :param value:
         :return:
         """
-        if obj.category:
+        if obj and obj.category:
             return obj.category.name
 
 
