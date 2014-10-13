@@ -47,8 +47,6 @@ class OrderItemViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.OrderItemSerializer
 
 
-
-
 class GetAuthTokenView(viewsets.GenericViewSet):
     """
     Requires user credentials (POST) or user logged in via session to
