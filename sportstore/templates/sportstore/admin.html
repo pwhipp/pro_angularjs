@@ -4,8 +4,9 @@
 {% block title %}SportStore Administration{% endblock title %}
 {% block head_extras %}
     <script src="{% static 'sportstore/js/angular-route.js' %}"></script>
+    <script src="{% static 'sportstore/js/angular-resource.js' %}"></script>
     <script>
-        angular.module("sportsStoreAdmin", ["ngRoute"])
+        angular.module("sportsStoreAdmin", ["ngRoute", "ngResource"])
             .config(function ($routeProvider) {
 
                 $routeProvider.when("/login", {
@@ -26,4 +27,5 @@
 {% block body %}
     <ng-view />
     <script src="{% static 'sportstore/js/controllers/admin.js' %}"></script>
+    <script src="{% static 'sportstore/js/controllers/adminProduct.js' %}"></script>
 {% endblock body %}
