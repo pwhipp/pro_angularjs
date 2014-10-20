@@ -7,34 +7,36 @@
     <script src="{% static 'sportstore/js/angular-route.js' %}"></script>
     <script src="{% static 'sportstore/js/angular-cookies.js' %}"></script>
     <script>
-        angular.module("sportsStore", ["customFilters", "cart", "ngRoute", "ngCookies"])
-        .config(function ($routeProvider, $httpProvider) {
+        angular.module("sportsStore", ["customFilters", "cart", "ngRoute", "ngCookies", "ngResource"])
+                .config(function ($routeProvider, $httpProvider, $resourceProvider) {
 
-            $routeProvider.when("/complete", {
-                templateUrl: "/static/sportstore/partials/cart/thankYou.html"
-            });
+                    $routeProvider.when("/complete", {
+                        templateUrl: "/static/sportstore/partials/cart/thankYou.html"
+                    });
 
-            $routeProvider.when("/placeorder", {
-                templateUrl: "/static/sportstore/partials/cart/placeOrder.html"
-            });
+                    $routeProvider.when("/placeorder", {
+                        templateUrl: "/static/sportstore/partials/cart/placeOrder.html"
+                    });
 
-            $routeProvider.when("/checkout", {
-                templateUrl: "/static/sportstore/partials/cart/checkout.html"
-            });
+                    $routeProvider.when("/checkout", {
+                        templateUrl: "/static/sportstore/partials/cart/checkout.html"
+                    });
 
-            $routeProvider.when("/products", {
-                templateUrl: "/static/sportstore/partials/productList.html"
-            });
+                    $routeProvider.when("/products", {
+                        templateUrl: "/static/sportstore/partials/productList.html"
+                    });
 
-            $routeProvider.otherwise({
-                templateUrl: "/static/sportstore/partials/productList.html"
-            });
+                    $routeProvider.otherwise({
+                        templateUrl: "/static/sportstore/partials/productList.html"
+                    });
 
 
-        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
+                    $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
+                    $httpProvider.defaults.xsrfCookieName = 'csrftoken';
 
-        });
+                    $resourceProvider.defaults.stripTrailingSlashes = false;
+
+                });
     </script>
     <script src="{% static 'sportstore/js/controllers/sportstore.js' %}"></script>
     <script src="{% static 'sportstore/js/controllers/productList.js' %}"></script>
