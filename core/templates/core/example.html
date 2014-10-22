@@ -7,11 +7,17 @@
     <script src="{% static 'core/js/filters.js' %}"></script>
     <script>
 
-        var myApp = angular.module("exampleApp", [
-            "exampleApp.Controllers",
-            "exampleApp.Filters",
-            "exampleApp.Services",
-            "exampleApp.Directives"]);
+        var myApp = angular.module("exampleApp",
+                ["exampleApp.Controllers", "exampleApp.Filters",
+                    "exampleApp.Services", "exampleApp.Directives"]);
+
+        myApp.constant("startTime", new Date().toLocaleTimeString());
+        myApp.config(function (startTime) {
+            console.log("Main module config: " + startTime);
+        });
+        myApp.run(function (startTime) {
+            console.log("Main module run: " + startTime);
+        });
 
         angular.module("exampleApp.Directives", [])
                 .directive("highlight", function ($filter) {
@@ -25,7 +31,6 @@
                     }
                 });
 
-
         var now = new Date();
         myApp.value("nowValue", now);
 
@@ -33,6 +38,14 @@
                 .service("days", function (nowValue) {
                     this.today = nowValue.getDay();
                     this.tomorrow = this.today + 1;
+                })
+                .config(function() {
+                    // exampleApp is not loaded so there is not yet a startTime constant to inject
+                    console.log("Services module config: (no time)");
+                })
+                .run(function (startTime) {
+                    // all modules are loaded so there is a startTime constant to inject
+                    console.log("Services module run: " + startTime);
                 });
 
     </script>

@@ -67,3 +67,7 @@ In any event I'm not sure what the issue is here because we're using admin.html 
 
 ## 8.18 I don't think I need the WithCredentials option
 As I've set Django up using token authentication, this is probably a waste.
+
+## 9.17 Using modules to organise code
+Notice that javascript and angular don't have any notion of a namespace so if two modules use the same name for any
+block, there could be nasty clashes.
