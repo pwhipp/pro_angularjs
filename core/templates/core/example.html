@@ -14,6 +14,14 @@
             $scope.day = new Date().getDay() + 1;
         });
 
+        var now = new Date();
+        myApp.value("nowValue", now);
+
+        myApp.service("days", function (nowValue) {
+            this.today = nowValue.getDay();
+            this.tomorrow = this.today + 1;
+        });
+
         myApp.directive("highlight", function ($filter) {
 
             var dayFilter = $filter("dayName");
