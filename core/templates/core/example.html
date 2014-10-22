@@ -10,7 +10,12 @@
             var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday",
                 "Thursday", "Friday", "Saturday"];
             $scope.day = dayNames[new Date().getDay()];
-            $scope.tomorrow = dayNames[(new Date().getDay() + 1) % 7];
+        });
+
+        myApp.controller("tomorrowCtrl", function ($scope) {
+            var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday",
+                "Thursday", "Friday", "Saturday"];
+            $scope.day = dayNames[(new Date().getDay() + 1) % 7];
         });
 
     </script>
@@ -22,7 +27,7 @@
             <h3>AngularJS App</h3>
         </div>
         <h4 ng-controller="dayCtrl">Today is {{day || "(unknown)"}}</h4>
-        <h4 ng-controller="dayCtrl">Tomorrow is {{tomorrow || "(unknown)"}}</h4>
+        <h4 ng-controller="tomorrowCtrl">Tomorrow is {{day || "(unknown)"}}</h4>
     </div>
     {% endverbatim %}
 {% endblock body %}
