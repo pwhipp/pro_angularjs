@@ -7,7 +7,7 @@ from rest_framework.routers import DefaultRouter
 import sportstore.views as sv
 
 # Set up api viewsets
-router = DefaultRouter()
+router = DefaultRouter(trailing_slash=False)
 router.register(r'users', sv.UserViewSet)
 router.register(r'products', sv.ProductViewSet)
 router.register(r'categories', sv.CategoryViewSet)

@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% block ng-app %}ng-app="exampleApp"{% endblock ng-app %}
+{% block title %}AngularJS Demo{% endblock title %}
+{% block head_extras %}
+    <script>
+
+        var myApp = angular.module("exampleApp", []);
+
+        myApp.controller("dayCtrl", function ($scope) {
+            // controller statements will go here
+        });
+
+    </script>
+{% endblock head_extras %}
+{% block body %}
+    {% verbatim %}
+    <div class="panel" ng-controller="dayCtrl">
+        <div class="page-header">
+            <h3>AngularJS App</h3>
+        </div>
+        <h4>Today is {{day || "(unknown)"}}</h4>
+    </div>
+    {% endverbatim %}
+{% endblock body %}

@@ -14,4 +14,5 @@ urlpatterns = patterns(
     url(r'todo/', include(todo.urls)),
     url(r'jsdemo/', include(jsdemo.urls)),
     url(r'^$', TemplateView.as_view(template_name='core/index.html'), name='home'),
-    url(r'^test/$', TemplateView.as_view(template_name='core/test.html'), name='test'))
+    url(r'^test/$', TemplateView.as_view(template_name='core/test.html'), name='test'),
+    url(r'^example/$', TemplateView.as_view(template_name='core/example.html'), name='example'))
