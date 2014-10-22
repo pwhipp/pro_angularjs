@@ -7,7 +7,9 @@
         var myApp = angular.module("exampleApp", []);
 
         myApp.controller("dayCtrl", function ($scope) {
-            // controller statements will go here
+            var dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday",
+                "Thursday", "Friday", "Saturday"];
+            $scope.day = dayNames[new Date().getDay()];
         });
 
     </script>
