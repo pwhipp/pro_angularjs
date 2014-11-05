@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+{% load staticfiles %}
+{% block ng-app %}ng-app="exampleApp"{% endblock ng-app %}
+{% block title %}Promises{% endblock title %}
+{% block head_extras %}
+    <script src="{% static 'core/js/controllers.js' %}"></script>
+    <script src="{% static 'core/js/filters.js' %}"></script>
+    <script>
+        var app = angular.module("exampleApp", [])
+                .directive("promiseWorker", function($q) {
+                    var deferred = $q.defer();
+                    return {
+                        link: function(scope, element, attrs) {
+                            element.find("button").on("click", function (event) {
+                                var buttonText = event.target.innerText;
+                                if (buttonText == "Abort") {
+                                    deferred.reject("Aborted");
+                                } else {
+                                    deferred.resolve(buttonText);
+                                }
+                            });
+                        },
+                        controller: function ($scope, $element, $attrs) {
+                            this.promise = deferred.promise;
+                        }
+                    }
+                })
+                .directive("promiseObserver", function() {
+                    return {
+                        require: "^promiseWorker",
+                        link: function (scope, element, attrs, ctrl) {
+                            ctrl.promise.then(function (result) {
+                                element.text(result);
+                            }, function (reason) {
+                                element.text("Fail (" + reason + ")");
+                            });
+                        }
+                    }
+                })
+                .controller("defaultCtrl", function ($scope) {
+
+                });
+    </script>
+{% endblock head_extras %}
+{% block body_attributes %}ng-controller="defaultCtrl"{% endblock body_attributes %}
+{% block body %}
+    {% verbatim %}
+    <div class="well" promise-worker>
+        <button class="btn btn-primary">Heads</button>
+        <button class="btn btn-primary">Tails</button>
+        <button class="btn btn-primary">Abort</button>
+        Outcome: <span promise-observer></span>
+    </div>
+    {% endverbatim %}
+{% endblock body %}
