@@ -1,14 +1,17 @@
 {% extends 'core/base.html' %}
 {% block ng-app %}ng-app="exampleApp"{% endblock ng-app %}
-{% block title %}Chapter 12 Forms{% endblock title %}
+{% block title %}Chapter 13 Controllers{% endblock title %}
 {% block head_extras %}
     <script>
-        angular.module("exampleApp", []);
+        angular.module("exampleApp", [])
+            .controller("simpleCtrl", function ($scope) {
+
+            });
     </script>
 {% endblock head_extras %}
 {% block body %}
     {% verbatim %}
-    <div class="well">
+    <div class="well" ng-controller="simpleCtrl">
         Content will go here.
     </div>
     {% endverbatim %}
