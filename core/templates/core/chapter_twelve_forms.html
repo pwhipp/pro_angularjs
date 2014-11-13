@@ -14,10 +14,11 @@
             });
     </script>
     <style>
-        form .ng-invalid.ng-dirty { background-color: lightpink; }
+        form .ng-invalid-required.ng-dirty { background-color: lightpink; }
+        form .ng-invalid-email.ng-dirty { background-color: lightgoldenrodyellow; }
         form .ng-valid.ng-dirty { background-color: lightgreen; }
-        span.summary.ng-invalid { color: red; font-weight: bold; }
-        span.summary.ng-valid { color: green; }
+        span.summary.ng-invalid {color: red; font-weight: bold; }
+        span.summary.ng-valid { color: green }
     </style>
 {% endblock head_extras %}
 {% block body %}
