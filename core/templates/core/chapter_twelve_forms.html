@@ -5,52 +5,30 @@
     <script>
         angular.module("exampleApp", [])
             .controller("defaultCtrl", function ($scope) {
-
-                $scope.addUser = function (userDetails) {
-                    if (myForm.$valid) {
-                        $scope.message = userDetails.name
-                            + " (" + userDetails.email + ") ("
-                            + userDetails.agreed + ")";
-                    } else {
-                        $scope.showValidation = true;
-                    }
-                }
-
-                $scope.message = "Ready";
-
-                $scope.getError = function (error) {
-                    if (angular.isDefined(error)) {
-                        if (error.required) {
-                            return "Please enter a value";
-                        } else if (error.email) {
-                            return "Please enter a valid email address";
-                        }
-                    }
-                }
+                $scope.requireValue = true;
+                $scope.matchPattern = new RegExp("^[a-z]");
             });
     </script>
-    <style>
-        form.valid .ng-invalid-required.ng-dirty { background-color: lightpink; }
-        form.valid .ng-invalid-email.ng-dirty {
-            background-color: lightgoldenrodyellow; }
-        div.error { color: red; font-weight: bold; }
-    </style>
 {% endblock head_extras %}
 {% block body %}
     {% verbatim %}
     <div id="todoPanel" class="panel" ng-controller="defaultCtrl">
-        <form name="myForm" novalidate ng-submit="addUser(newUser)"
-              ng-class="showValidation ? 'valid' : ''">
+        <form name="myForm" novalidate>
             <div class="well">
                 <div class="form-group">
-                    <label>Email:</label>
-                    <input name="userEmail" type="email" class="form-control"
-                           required ng-model="newUser.email">
-                    <div class="error" ng-show="showValidation">
-                        {{getError(myForm.userEmail.$error)}}
-                    </div>
+                    <label>Text:</label>
+                    <input name="sample" class="form-control" ng-model="inputValue"
+                           ng-required="requireValue" ng-minlength="3"
+                           ng-maxlength="10" ng-pattern="matchPattern">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">OK</button>
+            </div>
+
+            <div class="well">
+                <p>Required Error: {{myForm.sample.$error.required}}</p>
+                <p>Min Length Error: {{myForm.sample.$error.minlength}}</p>
+                <p>Max Length Error: {{myForm.sample.$error.maxlength}}</p>
+                <p>Pattern Error: {{myForm.sample.$error.pattern}}</p>
+                <p>Element Valid: {{myForm.sample.$valid}}</p>
             </div>
         </form>
     </div>
