@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% block ng-app %}ng-app="exampleApp"{% endblock ng-app %}
+{% block title %}Chapter 12 Forms{% endblock title %}
+{% block head_extras %}
+    <script>
+        angular.module("exampleApp", []);
+    </script>
+{% endblock head_extras %}
+{% block body %}
+    {% verbatim %}
+    <div class="well">
+        Content will go here.
+    </div>
+    {% endverbatim %}
+{%  endblock body %}
