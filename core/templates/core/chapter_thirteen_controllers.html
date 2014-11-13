@@ -2,49 +2,51 @@
 {% block ng-app %}ng-app="exampleApp"{% endblock ng-app %}
 {% block title %}Chapter 13 Controllers{% endblock title %}
 {% block head_extras %}
-    <script>
-        angular.module("exampleApp", [])
-            .controller("simpleCtrl", function ($scope, $rootScope) {
-
-                $scope.$on("zipCodeUpdated", function (event, args) {
-                    $scope[args.type] = args.zipCode;
-                });
-
-                $scope.setAddress = function (type, zip) {
-                    $rootScope.$broadcast("zipCodeUpdated", {
-                        type: type, zipCode: zip
-                    });
-                    console.log("Type: " + type + " " + zip);
-                }
-
-                $scope.copyAddress = function () {
-                    $scope.zip = $scope.billingZip;
-                }
-            });
-    </script>
+    <script src="/static/core/js/ch13_controllers.js"></script>
 {% endblock head_extras %}
+{% block body_attributes %}ng-controller="topLevelCtrl"{% endblock body_attributes %}
 {% block body %}
     {% verbatim %}
-    <div class="well" ng-controller="simpleCtrl">
-        <h4>Billing Zip Code</h4>
-        <div class="form-group">
-            <input class="form-control" ng-model="zip">
+
+    <div class="well">
+        <h4>Top Level Controller</h4>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button"
+                        ng-click="reverseText()">Reverse</button>
+                <button class="btn btn-default" type="button"
+                        ng-click="changeCase()">Case</button>
+            </span>
+            <input class="form-control" ng-model="dataValue">
         </div>
-        <button class="btn btn-primary" ng-click="setAddress('billingZip', zip)">
-            Save Billing
-        </button>
     </div>
-    <div class="well" ng-controller="simpleCtrl">
-        <h4>Shipping Zip Code</h4>
-        <div class="form-group">
-            <input class="form-control" ng-model="zip">
+
+    <div class="well" ng-controller="firstChildCtrl">
+        <h4>First Child Controller</h4>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button"
+                        ng-click="reverseText()">Reverse</button>
+                <button class="btn btn-default" type="button"
+                        ng-click="changeCase()">Case</button>
+            </span>
+            <input class="form-control" ng-model="dataValue">
         </div>
-        <button class="btn btn-primary" ng-click="copyAddress()">
-            Use Billing
-        </button>
-        <button class="btn btn-primary" ng-click="setAddress('shippingZip', zip)">
-            Save Shipping
-        </button>
+    </div>
+
+    <div class="well" ng-controller="secondChildCtrl">
+        <h4>Second Child Controller</h4>
+        <div class="input-group">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="button"
+                        ng-click="reverseText()">Reverse</button>
+                <button class="btn btn-default" type="button"
+                        ng-click="changeCase()">Case</button>
+                <button class="btn btn-default" type="button"
+                        ng-click="shiftFour()">Shift</button>
+            </span>
+            <input class="form-control" ng-model="dataValue">
+        </div>
     </div>
     {% endverbatim %}
 {%  endblock body %}
