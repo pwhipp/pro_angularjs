@@ -16,4 +16,5 @@ urlpatterns = patterns(
     url(r'^$', TemplateView.as_view(template_name='core/index.html'), name='home'),
     url(r'^test/$', TemplateView.as_view(template_name='core/test.html'), name='test'),
     url(r'^example/$', TemplateView.as_view(template_name='core/example.html'), name='example'),
+    url(r'^directives/$', TemplateView.as_view(template_name='core/chapter_ten_directives.html'), name='directives'),
     url(r'^promises/$', TemplateView.as_view(template_name='core/promises.html'), name='promises'))
