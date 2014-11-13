@@ -8,11 +8,17 @@
                 $scope.addUser = function (userDetails) {
                     $scope.message = userDetails.name
                         + " (" + userDetails.email + ") (" + userDetails.agreed + ")";
-                };
+                }
 
                 $scope.message = "Ready";
             });
     </script>
+    <style>
+        form .ng-invalid.ng-dirty { background-color: lightpink; }
+        form .ng-valid.ng-dirty { background-color: lightgreen; }
+        span.summary.ng-invalid { color: red; font-weight: bold; }
+        span.summary.ng-valid { color: green; }
+    </style>
 {% endblock head_extras %}
 {% block body %}
     {% verbatim %}
@@ -37,14 +43,16 @@
                     </label>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block"
-                        ng-disabled="myForm.$invalid">
-                    OK
-                </button>
+                        ng-disabled="myForm.$invalid">OK</button>
             </div>
             <div class="well">
                 Message: {{message}}
                 <div>
-                    Valid: {{myForm.$valid}}
+                    Valid:
+                    <span class="summary"
+                          ng-class="myForm.$valid ? 'ng-valid' : 'ng-invalid'">
+                        {{myForm.$valid}}
+                    </span>
                 </div>
             </div>
         </form>
