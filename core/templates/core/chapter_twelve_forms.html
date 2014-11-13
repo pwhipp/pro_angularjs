@@ -27,14 +27,17 @@
 
         <table class="table">
             <thead>
-            <tr><th>#</th><th>Action</th><th>Done</th></tr>
+                <tr><th>#</th><th>Action</th><th>Done</th></tr>
             </thead>
             <tr ng-repeat="item in todos">
                 <td>{{$index + 1}}</td>
                 <td>{{item.action}}</td>
-                <td>{{item.complete}}</td>
+                <td>
+                    <input type="checkbox" ng-model="item.complete"
+                </td>
             </tr>
         </table>
+
     </div>
     {% endverbatim %}
 {%  endblock body %}
